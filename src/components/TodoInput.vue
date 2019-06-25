@@ -20,12 +20,15 @@ export default {
     addTodo() {
       // dom이 아니라, 변수의 값이 있는지 확인 (양방향, model)
       if(this.newTodoItem !== '') {
+        /*
         // local storage에 data 추가
         // 로직) addTodo 추가 버튼을 누르면 newTodoItem에 입력된 값을 local storage에 추가
         // 확인) 개발자 도구의 application 탭에서 local storage 확인 가능
         // 설명) setItem ==> key, value
         var obj = {completed: false, item: this.newTodoItem};
         localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        */
+        this.$emit('addItemEvent', this.newTodoItem);
         this.clearInput();
       }
     },

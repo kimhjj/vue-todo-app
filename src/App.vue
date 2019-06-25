@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput @addItemEvent="addTodo"></TodoInput>
     <TodoList :props-data="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -50,6 +50,13 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    addTodo(newTodoItem) {
+      var obj = {completed: false, item: newTodoItem};
+      localStorage.setItem(newTodoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    },
   },
 }
 </script>
