@@ -4,7 +4,7 @@
     <TodoInput @addItemEvent="addTodo"></TodoInput>
     <TodoList :props-data="todoItems" 
       @removeItemEvent="removeTodo" @toggleItemEvent="toggleComplete"></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoFooter @clearItemEvent="clearTodo"></TodoFooter>
   </div>
 </template>
 
@@ -61,6 +61,10 @@ export default {
     removeTodo(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
+    },
+    clearTodo() {
+      localStorage.clear();
+      this.todoItems = [];
     },
     toggleComplete(todoItem, index) {
       this.todoItems[index].completed = !this.todoItems[index].completed;
