@@ -47,7 +47,7 @@ export default {
         // local storage data를 읽음
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
           var itemJson = localStorage.getItem(localStorage.key(i));
-          this.todoItems.push(JSON.stringify(itemJson));
+          this.todoItems.push(JSON.parse(itemJson));
         }
       }
     }
