@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- message-value 속성에 title 값을 담아서 자식에게 전달한다. -->
+    <HelloWorld v-bind:message-value="title"/>
   </div>
 </template>
 
@@ -12,7 +13,12 @@ export default {
   name: 'app',
   components: {
     HelloWorld
-  }
+  },
+  data() {
+    return {
+      title: "Passed from Parent Component!."
+    }
+  },
 }
 </script>
 
