@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList :props-data="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -18,7 +18,39 @@ export default {
     'TodoInput': TodoInput,
     TodoList,
     TodoFooter
-  }
+  },
+  data() {
+    return {
+      todoItems: []
+    }
+  },
+  /** 
+   * vue life cycle 4개의 단계
+   * vue life cycle 8개의 속성
+    ■ 인스턴스 생성
+    ｜ 1) beforeCreated
+    ｜ 2) created
+    ｜ 3) beforeMount
+    ｜ 4) mounted
+    ■ 생성된 인스턴스를 화면에 부착
+    ｜ 5) beforeUpdate
+    ｜ 6) updated
+    ■ 화면에 부착된 인스턴스 내용 갱신
+    ｜ 7) beforeDestroy
+    ｜ 8) destroyed
+    ■ 인스턴스가 제거되는 소멸
+  */ 
+  created() {
+    if(localStorage.length > 0){
+      for(var i=0; i<localStorage.length; i++) {
+        // local storage data를 읽음
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          var itemJson = localStorage.getItem(localStorage.key(i));
+          this.todoItems.push(JSON.stringify(itemJson));
+        }
+      }
+    }
+  },
 }
 </script>
 
