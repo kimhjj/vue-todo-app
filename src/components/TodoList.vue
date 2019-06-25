@@ -2,12 +2,14 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todoItem, index) in propsData" :key="index" class="shadow">
+      <li v-for="(todoItem, index) in propsData" :key="index" class="shadow"
+        @click="toggleComplete(todoItem, index)">
         <!-- 체크박스 (동적 class, click event) -->
-        <i class="fas fa-check checkBtn" :class="{textCompleted: todoItem.completed}" 
-          @click="toggleComplete(todoItem, index)"></i>
+        <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
         <!-- data -->
-        <span>{{todoItem.item}}</span>
+        <span :class="{textCompleted: todoItem.completed}">
+          {{todoItem.item}}
+        </span>
         <!-- 삭제버튼 -->
         <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
