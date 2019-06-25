@@ -25,7 +25,7 @@ export default {
         // 확인) 개발자 도구의 application 탭에서 local storage 확인 가능
         // 설명) setItem ==> key, value
         var obj = {completed: false, item: this.newTodoItem};
-        localStorage.setItem(this.newTodoItem+'_key', JSON.stringify(obj));
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
         this.clearInput();
       }
     },
