@@ -2,7 +2,10 @@
   <div class="inputBox shadow">
     <!-- 아래 input에 값을 입력하면, newTodoItem 변수에 값이 들어간다. -->
     <input type="text" v-model="newTodoItem">
-    <button @click="addTodo">추가</button>
+    <!-- <button @click="addTodo">추가</button> -->
+    <span class="addContainer" @click="addTodo">
+      <i class="fas fa-plus addBtn"></i>
+    </span>
   </div>
 </template>
 
