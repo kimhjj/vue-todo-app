@@ -3,7 +3,8 @@
   <div>
     <ul>
       <li v-for="(todoItem, index) in todoItems" :key="index" class="shadow">
-        {{todoItem}}
+        <i class="fas fa-check checkBtn" v-on:click="toggleComplete"></i>
+        <span class="textCompleted">{{todoItem}}</span>
         <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
@@ -39,7 +40,10 @@ export default {
     if(localStorage.length > 0){
       for(var i=0; i<localStorage.length; i++) {
         // local storage data를 읽음
-        this.todoItems.push(localStorage.key(i));
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          var itemJson = localStorage.getItem(localStorage.key(i));
+          this.todoItems.push(JSON.stringify(itemJson));
+        }
       }
     }
   },
@@ -47,6 +51,9 @@ export default {
     removeTodo(todoItem, index) {
       localStorage.removeItem(todoItem);
       this.todoItems.splice(index, 1);
+    },
+    toggleComplete() {
+
     }
   },
 }
