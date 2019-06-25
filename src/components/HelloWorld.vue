@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ messageValue }}</h1>
-    
+    <!-- v-on:click === @click -->
+    <button @click="showLog">Show</button>
   </div>
 </template>
 
@@ -11,7 +12,13 @@ export default {
   // props: {
   //   msg: String
   // }
-  props: ['messageValue']
+  props: ['messageValue'],
+  methods: {
+    showLog: function() {
+      // 이벤트 전달
+      this.$emit('show-log');
+    }
+  }
 }
 </script>
 
