@@ -19,9 +19,22 @@ export default {
       todoItems: []
     }
   },
-  // vue life cycle 8개의 속성
-  // ※ created, beforeCreated, beforeMount, mounted
-  // ※ beforeUpdate, updated, beforeDestroy, destroy
+  /** 
+   * vue life cycle 4개의 단계
+   * vue life cycle 8개의 속성
+    ■ 인스턴스 생성
+    ｜ 1) beforeCreated
+    ｜ 2) created
+    ｜ 3) beforeMount
+    ｜ 4) mounted
+    ■ 생성된 인스턴스를 화면에 부착
+    ｜ 5) beforeUpdate
+    ｜ 6) updated
+    ■ 화면에 부착된 인스턴스 내용 갱신
+    ｜ 7) beforeDestroy
+    ｜ 8) destroyed
+    ■ 인스턴스가 제거되는 소멸
+  */ 
   created() {
     if(localStorage.length > 0){
       for(var i=0; i<localStorage.length; i++) {

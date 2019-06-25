@@ -24,7 +24,8 @@ export default {
         // 로직) addTodo 추가 버튼을 누르면 newTodoItem에 입력된 값을 local storage에 추가
         // 확인) 개발자 도구의 application 탭에서 local storage 확인 가능
         // 설명) setItem ==> key, value
-        localStorage.setItem(this.newTodoItem+'_key', this.newTodoItem);
+        var obj = {completed: false, item: this.newTodoItem};
+        localStorage.setItem(this.newTodoItem+'_key', JSON.stringify(obj));
         this.clearInput();
       }
     },
