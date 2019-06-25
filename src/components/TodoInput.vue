@@ -1,7 +1,5 @@
 <template>
-  <div>
-    
-  </div>
+  <div>TodoInput</div>
 </template>
 
 <script>
