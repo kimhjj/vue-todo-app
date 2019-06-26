@@ -2,8 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput @addItemEvent="addTodo"></TodoInput>
-    <TodoList :props-data="todoItems" 
-      @removeItemEvent="removeTodo" @toggleItemEvent="toggleComplete"></TodoList>
+    <TodoList @removeItemEvent="removeTodo" @toggleItemEvent="toggleComplete"></TodoList>
     <TodoFooter @clearItemEvent="clearTodo"></TodoFooter>
   </div>
 </template>
@@ -42,6 +41,7 @@ export default {
     ■ 인스턴스가 제거되는 소멸
   */ 
   created() {
+    /** store.js로 이동함
     if(localStorage.length > 0){
       for(let i=0; i<localStorage.length; i++) {
         // local storage data를 읽음
@@ -51,6 +51,7 @@ export default {
         }
       }
     }
+    */
   },
   methods: {
     addTodo(newTodoItem) {

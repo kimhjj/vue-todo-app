@@ -6,7 +6,7 @@
     <transition-group name="list" tag="ul">
     <!-- <ul> -->
       <li
-        v-for="(todoItem, index) in propsData"
+        v-for="(todoItem, index) in this.$store.state.todoItems"
         :key="index"
         class="shadow"
         @click="toggleComplete(todoItem, index)">
@@ -26,7 +26,8 @@
 
 <script>
 export default {
-  props: ["propsData"],
+  // store.js에서 가져오므로 삭제
+  //props: ["propsData"],
   methods: {
     removeTodo(todoItem, index) {
       this.$emit("removeItemEvent", todoItem, index);
