@@ -1,15 +1,15 @@
 <!-- template 태그 아래에 항상 root에 해당하는태그가 있어야 한다. eslint가 체크함 -->
 <template>
   <div>
-    <!-- 이쁘게 하려고 추가함. name은 list로 해야한다. 스타일과 연결 -->
+    <!-- 이쁘게 하려고 추가함. name은 list로 해야한다. 스타일과 연결됨 -->
+    <!-- transition-group에서 tag에 값을 줌. (예)tag="p",ㄴtag="ul" -->
     <transition-group name="list" tag="ul">
     <!-- <ul> -->
       <li
         v-for="(todoItem, index) in propsData"
         :key="index"
         class="shadow"
-        @click="toggleComplete(todoItem, index)"
-      >
+        @click="toggleComplete(todoItem, index)">
         <!-- 체크박스 (동적 class, click event) -->
         <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
         <!-- data -->
@@ -73,7 +73,7 @@ li {
 }
 /*** 이쁘게 START ***/
 /* ★ transitions ==> add, remove, sheffle, autoComplate 등의 이벤트를 간단한 처리로 동작하도록 함
- * https://vuejs.org/v2/guide/transitions.html#List-Transitions
+ * vue sample: https://vuejs.org/v2/guide/transitions.html#List-Transitions
  */
 .list-enter-active,
 .list-leave-active {
