@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
-    <TodoFooter @clearItemEvent="clearTodo"></TodoFooter>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -69,11 +69,11 @@ export default {
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
-    */
     clearTodo() {
       localStorage.clear();
       this.todoItems = [];
-    }
+    },
+    */
   },
   /**
   [리팩토링]
