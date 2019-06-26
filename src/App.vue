@@ -72,6 +72,12 @@ export default {
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
+  /**
+  [리팩토링]
+    • 변수선언 var 를 const 나 let 으로 변경한다.
+    • 객체의 속성을 메서드로 사용할 때 function 예약어를 생략한다.
+    • 객체의 속성 이름과 값의 이름이 같은 경우를 찾아 속성의 이름은 생략한다
+   */
 }
 </script>
 
