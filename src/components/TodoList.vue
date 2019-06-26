@@ -1,69 +1,87 @@
 <!-- template 태그 아래에 항상 root에 해당하는태그가 있어야 한다. eslint가 체크함 -->
 <template>
   <div>
-    <ul>
-      <li v-for="(todoItem, index) in propsData" :key="index" class="shadow"
-        @click="toggleComplete(todoItem, index)">
+    <!-- 이쁘게 하려고 추가함. name은 list로 해야한다. 스타일과 연결 -->
+    <transition-group name="list" tag="ul">
+    <!-- <ul> -->
+      <li
+        v-for="(todoItem, index) in propsData"
+        :key="index"
+        class="shadow"
+        @click="toggleComplete(todoItem, index)"
+      >
         <!-- 체크박스 (동적 class, click event) -->
         <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
         <!-- data -->
-        <span :class="{textCompleted: todoItem.completed}">
-          {{todoItem.item}}
-        </span>
+        <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
         <!-- 삭제버튼 -->
         <span class="removeBtn" @click="removeTodo(todoItem, index)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
-    </ul>
+    <!-- </ul> -->
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['propsData'],
+  props: ["propsData"],
   methods: {
     removeTodo(todoItem, index) {
-      this.$emit('removeItemEvent', todoItem, index);
+      this.$emit("removeItemEvent", todoItem, index);
     },
     toggleComplete(todoItem, index) {
-      this.$emit('toggleItemEvent', todoItem, index);
+      this.$emit("toggleItemEvent", todoItem, index);
     }
-  },
-}
+  }
+};
 </script>
 
 <style scope>
 ul {
-list-style-type: none;
-padding-left: 0px;
-margin-top: 0;
-text-align: left;
+  list-style-type: none;
+  padding-left: 0px;
+  margin-top: 0;
+  text-align: left;
 }
 li {
-display: flex;
-min-height: 50px;
-height: 50px;
-line-height: 50px;
-margin: 0.5rem 0;
-padding: 0 0.9rem;
-background: white;
-border-radius: 5px;
+  display: flex;
+  min-height: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0.5rem 0;
+  padding: 0 0.9rem;
+  background: white;
+  border-radius: 5px;
 }
 .removeBtn {
-margin-left: auto;
-color: #de4343;
+  margin-left: auto;
+  color: #de4343;
 }
 .checkBtn {
-line-height: 45px;
-color: #62acde;
-margin-right: 5px;
+  line-height: 45px;
+  color: #62acde;
+  margin-right: 5px;
 }
 .checkBtnCompleted {
-color: #b3adad;
+  color: #b3adad;
 }
 .textCompleted {
-text-decoration: line-through;
-color: #b3adad;
+  text-decoration: line-through;
+  color: #b3adad;
 }
+/*** 이쁘게 START ***/
+/* ★ transitions ==> add, remove, sheffle, autoComplate 등의 이벤트를 간단한 처리로 동작하도록 함
+ * https://vuejs.org/v2/guide/transitions.html#List-Transitions
+ */
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+/*** 이쁘게 END***/
 </style>
