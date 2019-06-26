@@ -26,5 +26,12 @@ export const store = new Vuex.Store({
   // state를 선언
   state: {
     todoItems: storage.fetch()
+  },
+  mutations: {
+    addTodo(state, newTodoItem) {
+      let obj = {completed: false, item: newTodoItem};
+      localStorage.setItem(newTodoItem, JSON.stringify(obj));
+      state.todoItems.push(obj);
+    },
   }
 });

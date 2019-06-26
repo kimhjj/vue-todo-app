@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput @addItemEvent="addTodo"></TodoInput>
+    <TodoInput></TodoInput>
     <TodoList @removeItemEvent="removeTodo" @toggleItemEvent="toggleComplete"></TodoList>
     <TodoFooter @clearItemEvent="clearTodo"></TodoFooter>
   </div>
@@ -54,11 +54,13 @@ export default {
     */
   },
   methods: {
+    /** store.js로 이동함. 루트 컴포넌트가 아닌 스토어랑 통신함
     addTodo(newTodoItem) {
       let obj = {completed: false, item: newTodoItem};
       localStorage.setItem(newTodoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
+    */
     removeTodo(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);

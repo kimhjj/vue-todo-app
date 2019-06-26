@@ -45,7 +45,10 @@ export default {
         var obj = {completed: false, item: this.newTodoItem};
         localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
         */
-        this.$emit('addItemEvent', this.newTodoItem);
+        // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
+        //this.$emit('addItemEvent', this.newTodoItem);
+        // commit ==> state를 변경
+        this.$store.commit('addItemEvent', this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModals;
