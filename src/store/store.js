@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
     },
     removeTodo(state, payload) {
       localStorage.removeItem(payload.todoItem.item);
-      state.todoItems.splice(payload.index, 1);
+      state.todoItems.splice(payload, 1);
     },
     toggleComplete(state, payload) {
       let index = payload.index;
