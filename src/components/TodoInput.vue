@@ -29,7 +29,7 @@ export default {
       showModal: false
     }
   },
-  comments: {
+  components: {
     // === 'Modal': Modal
     Modal
   },
