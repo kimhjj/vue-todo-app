@@ -48,7 +48,7 @@ export default {
         // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
         //this.$emit('addItemEvent', this.newTodoItem);
         // commit ==> state를 변경
-        this.$store.commit('addItemEvent', this.newTodoItem);
+        this.$store.commit('addTodo', this.newTodoItem);
         this.clearInput();
       } else {
         this.showModal = !this.showModals;
