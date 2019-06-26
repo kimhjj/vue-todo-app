@@ -30,7 +30,10 @@ export default {
   //props: ["propsData"],
   methods: {
     removeTodo(todoItem, index) {
-      this.$emit("removeItemEvent", todoItem, index);
+      // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
+      //this.$emit("removeItemEvent", todoItem, index);
+      // {todoItem, index} === {todoItem:todoItem, index:index} 동일
+      this.$store.commit('removeTodo', {todoItem, index});
     },
     toggleComplete(todoItem, index) {
       this.$emit("toggleItemEvent", todoItem, index);

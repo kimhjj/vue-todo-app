@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList @removeItemEvent="removeTodo" @toggleItemEvent="toggleComplete"></TodoList>
+    <TodoList @toggleItemEvent="toggleComplete"></TodoList>
     <TodoFooter @clearItemEvent="clearTodo"></TodoFooter>
   </div>
 </template>
@@ -60,11 +60,11 @@ export default {
       localStorage.setItem(newTodoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    */
     removeTodo(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
+    */
     clearTodo() {
       localStorage.clear();
       this.todoItems = [];
