@@ -43,10 +43,10 @@ export default {
   */ 
   created() {
     if(localStorage.length > 0){
-      for(var i=0; i<localStorage.length; i++) {
+      for(let i=0; i<localStorage.length; i++) {
         // local storage data를 읽음
         if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          var itemJson = localStorage.getItem(localStorage.key(i));
+          let itemJson = localStorage.getItem(localStorage.key(i));
           this.todoItems.push(JSON.parse(itemJson));
         }
       }
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     addTodo(newTodoItem) {
-      var obj = {completed: false, item: newTodoItem};
+      let obj = {completed: false, item: newTodoItem};
       localStorage.setItem(newTodoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
