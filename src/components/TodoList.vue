@@ -8,10 +8,10 @@
       <li
         v-for="(todoItem, index) in storedTodoItems"
         :key="index"
-        class="shadow"
-        @click="toggleComplete(todoItem)">
+        class="shadow">
         <!-- 체크박스 (동적 class, click event) -->
-        <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
+        <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"
+          @click="toggleComplete(todoItem)"></i>
         <!-- data -->
         <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
         <!-- 삭제버튼 -->

@@ -7,14 +7,12 @@
 <script>
 import {mapMutations, mapActions} from 'vuex';
 export default {
-  actions: {
+  methods: {
+    // 헬퍼 추가
     ...mapActions({
       clearTodo: 'clearTodoItems'
     })
-  },
-  methods: {
-    // 헬퍼 추가
-    ...mapMutations(['clearTodo'])
+    //...mapMutations(['clearTodo'])
     /**
     clearTodo() {
       // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
