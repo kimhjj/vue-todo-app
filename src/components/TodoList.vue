@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeItem: 'removeTodoItems'
+      removeItem: 'removeTodoItem'
     }),
     ...mapMutations({
       //removeItem: 'removeTodo', 

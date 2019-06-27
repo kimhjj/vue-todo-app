@@ -49,7 +49,9 @@ export default {
         //this.$emit('addItemEvent', this.newTodoItem);
        
         // commit ==> state를 변경
-        this.$store.commit('addTodo', this.newTodoItem);
+        //this.$store.commit('addTodo', this.newTodoItem);
+        let obj = {completed: false, item: this.newTodoItem};
+        this.$store.dispatch('addTodoItem', obj);
         this.clearInput();
       } else {
         this.showModal = !this.showModals;
