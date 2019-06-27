@@ -9,7 +9,7 @@
         v-for="(todoItem, index) in storedTodoItems"
         :key="index"
         class="shadow"
-        @click="toggleComplete({todoItem, index})">
+        @click="toggleComplete(todoItem)">
         <!-- 체크박스 (동적 class, click event) -->
         <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
         <!-- data -->
@@ -46,10 +46,10 @@ export default {
     ...mapActions({
       removeItem: 'removeTodoItem'
     }),
-    ...mapMutations({
-      //removeItem: 'removeTodo', 
-      toggleComplete: 'toggleComplete'
-    })
+    // ...mapMutations({
+    //   //removeItem: 'removeTodo', 
+    //   toggleComplete: 'toggleComplete'
+    // })
     //...mapMutations(['removeTodo, toggleComplete']),
     /**
     removeTodo(todoItem, index) {
@@ -63,6 +63,10 @@ export default {
       this.$store.commit('toggleComplete', {todoItem, index})
     }
     */
+    toggleComplete(todoItem) {
+      todoItem.completed = !todoItem.completed;
+      this.$store.dispatch('toggleComplete', todoItem);
+    }
   }
 };
 </script>

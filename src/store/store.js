@@ -67,6 +67,15 @@ export const store = new Vuex.Store({
           context.commit('setTodoItems', items)
         })
     },
+    toggleComplete(context, payload) {
+      // post: 등록
+      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
+      axios.put(`${base_url}/${payload.id}`, payload)
+        .then(res => res.data)
+        .then(items => {
+          context.commit('setTodoItems', items)
+        })
+    },
     clearTodoItems(context) {
       // delete: 삭제
       // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
