@@ -15,7 +15,7 @@
         <!-- data -->
         <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
         <!-- 삭제버튼 -->
-        <span class="removeBtn" @click="removeTodo(todoItem, index)">
+        <span class="removeBtn" @click="removeTodo({todoItem, index})">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters, mapMutations} from 'vuex';
 export default {
   // store.js에서 가져오므로 삭제
   //props: ["propsData"],
@@ -40,12 +40,15 @@ export default {
     */
   },
   methods: {
+    ...mapMutations(['removeTodo']),
+    /**
     removeTodo(todoItem, index) {
       // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
       //this.$emit("removeItemEvent", todoItem, index);
       // {todoItem, index} === {todoItem:todoItem, index:index} 동일
       this.$store.commit('removeTodo', {todoItem, index});
     },
+    */
     toggleComplete(todoItem, index) {
       //this.$emit("toggleItemEvent", todoItem, index);
       this.$store.commit('toggleComplete', {todoItem, index})
