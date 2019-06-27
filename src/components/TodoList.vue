@@ -15,7 +15,7 @@
         <!-- data -->
         <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
         <!-- 삭제버튼 -->
-        <span class="removeBtn" @click="removeTodo({todoItem, index})">
+        <span class="removeBtn" @click="removeItem({todoItem, index})">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -40,7 +40,8 @@ export default {
     */
   },
   methods: {
-    ...mapMutations(['removeTodo']),
+    ...mapMutations({removeItem: 'removeTodo'}),
+    //...mapMutations(['removeTodo']),
     /**
     removeTodo(todoItem, index) {
       // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
