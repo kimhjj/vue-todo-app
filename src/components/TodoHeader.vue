@@ -9,7 +9,7 @@ export default {
 </script>
 
 <!-- scope: 해당 파일에서만 쓰겠다. -->
-<style scope>
+<style scoped>
 h1 {
 color:#2F3852;
 font-weight: 900;

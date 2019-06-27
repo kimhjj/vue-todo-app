@@ -14,8 +14,8 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 export default {
   components: {
-    'TodoHeader': TodoHeader,
-    'TodoInput': TodoInput,
+    TodoHeader,
+    TodoInput,
     TodoList,
     TodoFooter
   },
@@ -24,9 +24,10 @@ export default {
       todoItems: []
     }
   },
+
   /** 
-   * vue life cycle 4개의 단계
-   * vue life cycle 8개의 속성
+   [vue life cycle 4개의 단계]
+   [vue life cycle 8개의 속성]
     ■ 인스턴스 생성
     ｜ 1) beforeCreated
     ｜ 2) created
@@ -39,43 +40,7 @@ export default {
     ｜ 7) beforeDestroy
     ｜ 8) destroyed
     ■ 인스턴스가 제거되는 소멸
-  */ 
-  created() {
-    /** store.js로 이동함
-    if(localStorage.length > 0){
-      for(let i=0; i<localStorage.length; i++) {
-        // local storage data를 읽음
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          let itemJson = localStorage.getItem(localStorage.key(i));
-          this.todoItems.push(JSON.parse(itemJson));
-        }
-      }
-    }
-    */
-  },
-  methods: {
-    /** store.js로 이동함. 루트 컴포넌트가 아닌 스토어랑 통신함
-    addTodo(newTodoItem) {
-      let obj = {completed: false, item: newTodoItem};
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
-    removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index, 1);
-    },
-    toggleComplete(todoItem, index) {
-      this.todoItems[index].completed = !this.todoItems[index].completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-    clearTodo() {
-      localStorage.clear();
-      this.todoItems = [];
-    },
-    */
-  },
-  /**
+
   [리팩토링]
     • 변수선언 var 를 const 나 let 으로 변경한다.
     • 객체의 속성을 메서드로 사용할 때 function 예약어를 생략한다.

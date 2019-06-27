@@ -1,10 +1,7 @@
 <!-- template 태그 아래에 항상 root에 해당하는태그가 있어야 한다. eslint가 체크함 -->
 <template>
   <div>
-    <!-- 이쁘게 하려고 추가함. name은 list로 해야한다. 스타일과 연결됨 -->
-    <!-- transition-group에서 tag에 값을 줌. (예)tag="p",ㄴtag="ul" -->
     <transition-group name="list" tag="ul">
-    <!-- <ul> -->
       <li
         v-for="(todoItem, index) in storedTodoItems"
         :key="index"
@@ -19,7 +16,6 @@
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
-    <!-- </ul> -->
     </transition-group>
   </div>
 </template>
@@ -30,39 +26,15 @@ export default {
   mounted() {
     this.$store.dispatch('loadTodoItems')
   },
-  // store.js에서 가져오므로 삭제
-  //props: ["propsData"],
   computed: {
     // 헬퍼 추가
     // 잘 변하지 않지만, 잦은 호출이 있으면 computed 영역에 함수 작성함
     ...mapGetters(['storedTodoItems'])
-    /**
-    getTodoItems() {
-      return this.$store.getters.getTodoItems;
-    }
-    */
   },
   methods: {
     ...mapActions({
       removeItem: 'removeTodoItem'
     }),
-    // ...mapMutations({
-    //   //removeItem: 'removeTodo', 
-    //   toggleComplete: 'toggleComplete'
-    // })
-    //...mapMutations(['removeTodo, toggleComplete']),
-    /**
-    removeTodo(todoItem, index) {
-      // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
-      //this.$emit("removeItemEvent", todoItem, index);
-      // {todoItem, index} === {todoItem:todoItem, index:index} 동일
-      this.$store.commit('removeTodo', {todoItem, index});
-    },
-    toggleComplete(todoItem, index) {
-      //this.$emit("toggleItemEvent", todoItem, index);
-      this.$store.commit('toggleComplete', {todoItem, index})
-    }
-    */
     toggleComplete(todoItem) {
       todoItem.completed = !todoItem.completed;
       this.$store.dispatch('toggleComplete', todoItem);
@@ -71,7 +43,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 ul {
   list-style-type: none;
   padding-left: 0px;

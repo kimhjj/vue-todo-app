@@ -5,26 +5,8 @@ import VueAxios from 'vue-axios';
 
 // 루트 컴포넌트에 stroe 옵션을 제공
 // store는 루트의 모든 하위 컴포넌트에 주입된다.
-// axios와 VueAxios를 임포트
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
-
-const storage = {
-  fetch() {
-    const arr = [];
-
-    if(localStorage.length > 0){
-      for(let i=0; i<localStorage.length; i++) {
-        // local storage data를 읽음
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          let itemJson = localStorage.getItem(localStorage.key(i));
-          arr.push(JSON.parse(itemJson));
-        }
-      }
-    }
-    return arr;
-  }
-}
 
 const base_url = 'http://localhost:4500/api/todos';
 export const store = new Vuex.Store({
@@ -37,7 +19,7 @@ export const store = new Vuex.Store({
       return state.todoItems;
     }
   },
-  // actions는 dispatch 해서 사용
+  // actions를 하위 컴포넌트에서 사용하려면 -> dispatch
   actions: {
     loadTodoItems(context) {
       // get: 조회
@@ -87,34 +69,12 @@ export const store = new Vuex.Store({
         })
     }
   },
-  // mutations는 commit 해서 사용
+  // mutations을 하위 컴포넌트에서 사용하려면 -> commit
   mutations: {
     setTodoItems(state, items) {
       // state 속성의 todoItems에 새로운 item을 set 한다.
       state.todoItems = items;
     },
-    /*
-    addTodo(state, newTodoItem) {
-      let obj = {completed: false, item: newTodoItem};
-      localStorage.setItem(newTodoItem, JSON.stringify(obj));
-      state.todoItems.push(obj);
-    },
-    removeTodo(state, payload) {
-      localStorage.removeItem(payload.todoItem.item);
-      state.todoItems.splice(payload, 1);
-    },
-    toggleComplete(state, payload) {
-      let index = payload.index;
-      let todoItem = payload.todoItem;
-      state.todoItems[index].completed = !state.todoItems[index].completed;
-      localStorage.removeItem(todoItem.item);
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-    },
-    clearTodo(state) {
-      localStorage.clear();
-      state.todoItems = [];
-    },
-    */
   },
 });
 
