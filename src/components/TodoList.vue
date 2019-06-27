@@ -33,6 +33,7 @@ export default {
     // 헬퍼 추가
     // 잘 변하지 않지만, 잦은 호출이 있으면 computed 영역에 함수 작성함
     ...mapGetters(['storedTodoItems'])
+    /**
     getTodoItems() {
       return this.$store.getters.getTodoItems;
     }
