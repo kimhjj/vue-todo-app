@@ -15,7 +15,7 @@
         <!-- data -->
         <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
         <!-- 삭제버튼 -->
-        <span class="removeBtn" @click="removeItem({todoItem, index})">
+        <span class="removeBtn" @click="removeItem(todoItem)">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from 'vuex';
+import {mapGetters, mapMutations, mapActions} from 'vuex';
 export default {
   mounted() {
     this.$store.dispatch('loadTodoItems')
@@ -43,10 +43,13 @@ export default {
     */
   },
   methods: {
-    ...mapMutations({
-      removeItem: 'removeTodo', 
-      toggleComplete: 'toggleComplete'
+    ...mapActions({
+      removeItem: 'removeTodoItems'
     }),
+    ...mapMutations({
+      //removeItem: 'removeTodo', 
+      toggleComplete: 'toggleComplete'
+    })
     //...mapMutations(['removeTodo, toggleComplete']),
     /**
     removeTodo(todoItem, index) {

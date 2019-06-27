@@ -47,6 +47,15 @@ export const store = new Vuex.Store({
         .then(items => {
           context.commit('setTodoItems', items)
         })
+    },
+    removeTodoItems(context, payload) { // state라고 해도 되지만, 여기서는 context
+      // get, post, put, delete
+      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
+      axios.delete(`${base_url}/${payload.id}`)
+        .then(res => res.data)
+        .then(items => {
+          context.commit('setTodoItems', items)
+        })
     }
   },
   // mutations는 commit 해서 사용
