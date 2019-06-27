@@ -6,7 +6,7 @@
     <transition-group name="list" tag="ul">
     <!-- <ul> -->
       <li
-        v-for="(todoItem, index) in this.$store.state.todoItems"
+        v-for="(todoItem, index) in getTodoItems"
         :key="index"
         class="shadow"
         @click="toggleComplete(todoItem, index)">
@@ -28,6 +28,11 @@
 export default {
   // store.js에서 가져오므로 삭제
   //props: ["propsData"],
+  computed: {
+    getTodoItems() {
+      return this.$store.getters.getTodoItems;
+    }
+  },
   methods: {
     removeTodo(todoItem, index) {
       // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
