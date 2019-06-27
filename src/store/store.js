@@ -26,6 +26,7 @@ const storage = {
   }
 }
 
+const base_url = 'http://localhost:4500/api/todos';
 export const store = new Vuex.Store({
   // state를 선언
   state: {
@@ -36,7 +37,24 @@ export const store = new Vuex.Store({
       return state.todoItems;
     }
   },
+  // actions는 dispatch 해서 사용
+  actions: {
+    loadTodoItems(context) {
+      // get, post, put, delete
+      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
+      axios.get(`${base_url}`)
+        .then(res => res.data)
+        .then(items => {
+          context.commit('setTodoItems', items)
+        })
+    }
+  },
+  // mutations는 commit 해서 사용
   mutations: {
+    setTodoItems(state, items) {
+      // state 속성의 todoItems에 새로운 item을 set 한다.
+      state.todoItems = items;
+    },
     addTodo(state, newTodoItem) {
       let obj = {completed: false, item: newTodoItem};
       localStorage.setItem(newTodoItem, JSON.stringify(obj));
@@ -57,7 +75,7 @@ export const store = new Vuex.Store({
       localStorage.clear();
       state.todoItems = [];
     },
-  }
+  },
 });
 
 

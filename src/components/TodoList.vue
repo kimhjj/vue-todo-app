@@ -27,6 +27,9 @@
 <script>
 import {mapGetters, mapMutations} from 'vuex';
 export default {
+  mounted() {
+    this.$store.dispatch('loadTodoItems')
+  },
   // store.js에서 가져오므로 삭제
   //props: ["propsData"],
   computed: {
