@@ -92,3 +92,11 @@ Vuex 구성요소
 	4. actions : 비동기 로직, 비동기 처리 로직을 선언하는 메서드 async method (비동기 메서드) -- 20190627
 	
  */
+
+ /******
+  * vue UI 템플릿 (오픈소스)
+  * https://vuetifyjs.com/ko/
+  * 
+  * vue Native 모바일 플랫폼 (오픈소스)
+  * https://vue-native.io/
+  */
