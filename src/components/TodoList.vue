@@ -9,7 +9,7 @@
         v-for="(todoItem, index) in storedTodoItems"
         :key="index"
         class="shadow"
-        @click="toggleComplete(todoItem, index)">
+        @click="toggleComplete({todoItem, index})">
         <!-- 체크박스 (동적 class, click event) -->
         <i class="fas fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}"></i>
         <!-- data -->
@@ -40,8 +40,11 @@ export default {
     */
   },
   methods: {
-    ...mapMutations({removeItem: 'removeTodo'}),
-    //...mapMutations(['removeTodo']),
+    ...mapMutations({
+      removeItem: 'removeTodo', 
+      toggleComplete: 'toggleComplete'
+    }),
+    //...mapMutations(['removeTodo, toggleComplete']),
     /**
     removeTodo(todoItem, index) {
       // 루트 컴포넌트가 아닌 스토어랑 통신하므로 아래 소스 주석
@@ -49,11 +52,11 @@ export default {
       // {todoItem, index} === {todoItem:todoItem, index:index} 동일
       this.$store.commit('removeTodo', {todoItem, index});
     },
-    */
     toggleComplete(todoItem, index) {
       //this.$emit("toggleItemEvent", todoItem, index);
       this.$store.commit('toggleComplete', {todoItem, index})
     }
+    */
   }
 };
 </script>
