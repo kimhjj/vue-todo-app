@@ -51,6 +51,7 @@ export const store = new Vuex.Store({
     removeTodoItem(context, payload) { // state라고 해도 되지만, 여기서는 context
       // delete: 삭제
       // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
+      // 삭제할 아이디를 준다.
       axios.delete(`${base_url}/${payload.id}`)
         .then(res => res.data)
         .then(items => {
@@ -61,6 +62,16 @@ export const store = new Vuex.Store({
       // post: 등록
       // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
       axios.post(`${base_url}`, payload)
+        .then(res => res.data)
+        .then(items => {
+          context.commit('setTodoItems', items)
+        })
+    },
+    clearTodoItems(context) {
+      // delete: 삭제
+      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
+      // 전체를 삭제한다.
+      axios.delete(`${base_url}`)
         .then(res => res.data)
         .then(items => {
           context.commit('setTodoItems', items)

@@ -5,8 +5,13 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import {mapMutations, mapActions} from 'vuex';
 export default {
+  actions: {
+    ...mapActions({
+      clearTodo: 'clearTodoItems'
+    })
+  },
   methods: {
     // 헬퍼 추가
     ...mapMutations(['clearTodo'])
