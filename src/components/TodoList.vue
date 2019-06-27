@@ -30,8 +30,9 @@ export default {
   // store.js에서 가져오므로 삭제
   //props: ["propsData"],
   computed: {
+    // 헬퍼 추가
+    // 잘 변하지 않지만, 잦은 호출이 있으면 computed 영역에 함수 작성함
     ...mapGetters(['storedTodoItems'])
-    /** mapGetters가 뭐지?
     getTodoItems() {
       return this.$store.getters.getTodoItems;
     }
