@@ -6,7 +6,7 @@
     <transition-group name="list" tag="ul">
     <!-- <ul> -->
       <li
-        v-for="(todoItem, index) in getTodoItems"
+        v-for="(todoItem, index) in storedTodoItems"
         :key="index"
         class="shadow"
         @click="toggleComplete(todoItem, index)">
@@ -25,13 +25,17 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
   // store.js에서 가져오므로 삭제
   //props: ["propsData"],
   computed: {
+    ...mapGetters(['storedTodoItems'])
+    /** mapGetters가 뭐지?
     getTodoItems() {
       return this.$store.getters.getTodoItems;
     }
+    */
   },
   methods: {
     removeTodo(todoItem, index) {

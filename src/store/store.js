@@ -28,7 +28,7 @@ export const store = new Vuex.Store({
     todoItems: storage.fetch()
   },
   getters: {
-    getTodoItems(state) {
+    storedTodoItems(state) {
       return state.todoItems;
     }
   },
@@ -75,7 +75,8 @@ MVC 패턴의 문제점
 Vuex로 해결할 수 있는 문제
 	• MVC 패턴에서 발생하는 구조적 오류
 	• 컴포넌트 각 데이터 전달 명시
-	• 여러 개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제
+  • 여러 개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제
+  
 Vuex 개념
 	• State : 컴포넌트 간에 공유하는 데이터 data()
 	• View : 데이터를 표시하는 화면 template
