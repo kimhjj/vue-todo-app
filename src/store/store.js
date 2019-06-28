@@ -2,82 +2,18 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import todo from './modules/todo'
 
 // 루트 컴포넌트에 stroe 옵션을 제공
 // store는 루트의 모든 하위 컴포넌트에 주입된다.
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
-const base_url = 'http://localhost:4500/api/todos';
 export const store = new Vuex.Store({
-  // state를 선언
-  state: {
-    todoItems: []
-  },
-  getters: {
-    storedTodoItems(state) {
-      return state.todoItems;
-    }
-  },
-  // actions를 하위 컴포넌트에서 사용하려면 -> dispatch
-  actions: {
-    loadTodoItems(context) {
-      // get: 조회
-      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
-      axios.get(`${base_url}`)
-        .then(res => res.data)
-        .then(items => {
-          context.commit('setTodoItems', items)
-        })
-    },
-    removeTodoItem(context, payload) { // state라고 해도 되지만, 여기서는 context
-      // delete: 삭제
-      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
-      // 삭제할 아이디를 준다.
-      axios.delete(`${base_url}/${payload.id}`)
-        .then(res => res.data)
-        .then(items => {
-          context.commit('setTodoItems', items)
-        })
-    },
-    addTodoItem(context, payload) { // state라고 해도 되지만, 여기서는 context
-      // post: 등록
-      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
-      axios.post(`${base_url}`, payload)
-        .then(res => res.data)
-        .then(items => {
-          context.commit('setTodoItems', items)
-        })
-    },
-    toggleComplete(context, payload) {
-      // put: 수정
-      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
-      axios.put(`${base_url}/${payload.id}`, payload)
-        .then(res => res.data)
-        .then(items => {
-          context.commit('setTodoItems', items)
-        })
-    },
-    clearTodoItems(context) {
-      // delete: 삭제
-      // 템플릿 리터럴: 백틱을 사용해서 스트링을 감싸고 ${ }을 사용해서 변수를 담는다.
-      // 전체를 삭제한다.
-      axios.delete(`${base_url}`)
-        .then(res => res.data)
-        .then(items => {
-          context.commit('setTodoItems', items)
-        })
-    }
-  },
-  // mutations을 하위 컴포넌트에서 사용하려면 -> commit
-  mutations: {
-    setTodoItems(state, items) {
-      // state 속성의 todoItems에 새로운 item을 set 한다.
-      state.todoItems = items;
-    },
-  },
+  modules: {
+    todo
+  }
 });
-
 
 
 /*************** day3_20190626
